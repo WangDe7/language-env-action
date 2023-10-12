@@ -42,26 +42,26 @@ async function run() {
         // // Set outputs for other workflow steps to use
         // core.setOutput('time', new Date().toTimeString())
         const serviceFilePath = core.getInput('serviceFilePath');
-        let output = [];
+        const output = [];
         const jsonStr = fs.readFileSync(serviceFilePath, 'utf-8');
-        let jsonData = JSON.parse(jsonStr);
+        const jsonData = JSON.parse(jsonStr);
         // let a = 'languageEnv'
         // let b = 'languageEnvVersion'
-        let a = core.getInput('languageField');
-        let b = core.getInput('languageVersionField');
-        for (let index in jsonData) {
+        const a = core.getInput('languageField');
+        const b = core.getInput('languageVersionField');
+        for (const index in jsonData) {
             let languageType = jsonData[index][a];
             let languageVersion = jsonData[index][b];
-            if (languageType == undefined) {
+            if (languageType === undefined) {
                 languageType = '';
             }
-            if (languageVersion == undefined) {
+            if (languageVersion === undefined) {
                 languageVersion = '';
             }
-            let language = languageType + "/" + languageVersion;
+            const language = languageType + '/' + languageVersion;
             output.push(language);
         }
-        let result = Array.from(new Set(output));
+        const result = Array.from(new Set(output));
         console.log(result);
         core.setOutput('language', result);
         // readLocalJsonFile('service.json').then(
@@ -82,22 +82,20 @@ async function run() {
 }
 exports.run = run;
 // read service message file from localpath
-function readLocalJsonFile(filepath) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filepath, 'utf-8', (err, data) => {
-            if (err) {
-                reject(err);
-            }
-            else {
-                try {
-                    const json = JSON.parse(data);
-                    resolve(json);
-                }
-                catch (error) {
-                    reject(error);
-                }
-            }
-        });
-    });
-}
+// function readLocalJsonFile(filepath: string): Promise<any> {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filepath, 'utf-8', (err, data) => {
+//       if (err) {
+//         reject(err)
+//       } else {
+//         try {
+//           const json = JSON.parse(data)
+//           resolve(json)
+//         } catch (error) {
+//           reject(error)
+//         }
+//       }
+//     })
+//   })
+// }
 //# sourceMappingURL=main.js.map
