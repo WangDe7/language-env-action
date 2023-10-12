@@ -1,7 +1,5 @@
 import * as core from '@actions/core'
 import * as fs from 'fs'
-import { wait } from './wait'
-import { json } from 'stream/consumers'
 
 /**
  * The main function for the action.
@@ -22,14 +20,14 @@ export async function run(): Promise<void> {
     // // Set outputs for other workflow steps to use
     // core.setOutput('time', new Date().toTimeString())
     const serviceFilePath: string = core.getInput('serviceFilePath')
-    let output: string[] = []
+    const output: string[] = []
     const jsonStr = fs.readFileSync(serviceFilePath, 'utf-8')
-    let jsonData = JSON.parse(jsonStr)
+    const jsonData = JSON.parse(jsonStr)
     // let a = 'languageEnv'
     // let b = 'languageEnvVersion'
-    let a = core.getInput('languageField')
-    let b = core.getInput('languageVersionField')
-  
+    const a = core.getInput('languageField')
+    const b = core.getInput('languageVersionField')
+
     for (let index in jsonData) {
       let languageType = jsonData[index][a]
       let languageVersion = jsonData[index][b]
@@ -38,11 +36,11 @@ export async function run(): Promise<void> {
       }
       if (languageVersion == undefined) {
         languageVersion = ''
-      } 
-      let language = languageType + "/" + languageVersion
+      }
+      let language = languageType + '/' + languageVersion
       output.push(language)
     }
-    
+
     let result = Array.from(new Set(output))
     console.log(result)
     core.setOutput('language', result)
@@ -55,7 +53,6 @@ export async function run(): Promise<void> {
     // ).catch(error => {
     //   console.error(error)
     // })
-    
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
@@ -63,19 +60,19 @@ export async function run(): Promise<void> {
 }
 
 // read service message file from localpath
-function readLocalJsonFile(filepath: string): Promise<any> {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filepath, 'utf-8', (err, data) => {
-      if (err) {
-        reject(err)
-      } else {
-        try{
-          const json = JSON.parse(data)
-          resolve(json)
-        } catch (error) {
-          reject(error)
-        }
-      }
-    })
-  })
-}
+// function readLocalJsonFile(filepath: string): Promise<any> {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filepath, 'utf-8', (err, data) => {
+//       if (err) {
+//         reject(err)
+//       } else {
+//         try {
+//           const json = JSON.parse(data)
+//           resolve(json)
+//         } catch (error) {
+//           reject(error)
+//         }
+//       }
+//     })
+//   })
+// }
