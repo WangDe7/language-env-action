@@ -37,7 +37,7 @@ export async function run(): Promise<void> {
       if (languageVersion === undefined) {
         languageVersion = ''
       }
-      const language = '${languageType}/${languageVersion}'
+      const language = languageType + '/' + languageVersion
       output.push(language)
     }
 
