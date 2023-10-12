@@ -28,20 +28,20 @@ export async function run(): Promise<void> {
     const a = core.getInput('languageField')
     const b = core.getInput('languageVersionField')
 
-    for (let index in jsonData) {
+    for (const index in jsonData) {
       let languageType = jsonData[index][a]
       let languageVersion = jsonData[index][b]
-      if (languageType == undefined) {
+      if (languageType === undefined) {
         languageType = ''
       }
-      if (languageVersion == undefined) {
+      if (languageVersion === undefined) {
         languageVersion = ''
       }
-      let language = languageType + '/' + languageVersion
+      const language = '${languageType}/${languageVersion}'
       output.push(language)
     }
 
-    let result = Array.from(new Set(output))
+    const result = Array.from(new Set(output))
     console.log(result)
     core.setOutput('language', result)
     // readLocalJsonFile('service.json').then(
