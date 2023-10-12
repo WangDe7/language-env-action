@@ -4,10 +4,18 @@ author: 'wangdefu'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  serviceFilePath:
+    description: 'serviceFilePath'
     required: false
-    default: '1000'
+    default: 'service.json'
+  languageField:
+    description: 'languageEnv'
+    required: false
+    default: 'languageEnv'
+  languageVersionField:
+    description: 'languageEnvVersion'
+    required: false
+    default: 'languageEnvVersion'
 
 # Define your outputs here.
 outputs:
