@@ -23,5 +23,5 @@ outputs:
     description: 'the locale required for project construction'
 
 runs:
-  using: node20
+  using: node18
   main: dist/index.js
