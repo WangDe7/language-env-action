@@ -11,7 +11,7 @@
 	"type": "service",
 	"language": ["java"],
     "languageEnv": "java",
-    "languageEnvVersion": "8",
+    "languageEnvVersion": "7",
 	"report": "https://d3p3arc4rj73mc.cloudfront.net/WhiteMatrixTech/matrix-cloud-monorepo/pr2262/matrix-cloud/matrix-cloud-syncer/jacoco-report/index.html",
 	"projectPath": ["matrix-cloud", "matrix-cloud-syncer"],
 	"_": null,
