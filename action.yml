@@ -1,18 +1,18 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'language-env'
+description: 'Extract the locale required for project construction'
+author: 'wangdefu'
 
 # Define your inputs here.
 inputs:
   milliseconds:
     description: 'Your input description here'
-    required: true
+    required: false
     default: '1000'
 
 # Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  language:
+    description: 'the locale required for project construction'
 
 runs:
   using: node20
